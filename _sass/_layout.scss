@@ -1,7 +1,7 @@
 /* Site Header
  * ============================================== */
     .site-header {
-        min-height: 450px;
+        min-height: 333px;
         background-color: $brand-color;
         background-image: url('');
         background-size: cover;
@@ -49,7 +49,7 @@
         float: right;
         line-height: 56px;
         margin-right: 25px;
-        padding-bottom: 100px;
+        padding-bottom: 0px;
 
         .page-link {
             line-height: $base-line-height;

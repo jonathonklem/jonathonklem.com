@@ -1,0 +1,151 @@
+---
+layout: post
+title: Ansible
+date: 2014-10-26 17:44:55.000000000 -05:00
+categories:
+- DevOps
+tags: []
+status: publish
+type: post
+published: true
+---
+Ansible is a tool designed to automate tasks on several machines at once and define their role within a network.  It is well documented [here](http://docs.ansible.com/) and there is even a video [here](http://fast.wistia.net/embed/iframe/qrqfj371b6?popover=true).  There is already a wealth of information about Ansible out there, so this guide will just aim to get you started quickly.
+
+Ansible is incredibly easy to use and easy to implement. The great thing about Ansible is that it uses SSH, so you don't have to install any kind of software on the servers you're wanting to modify.  All you have to do is give Ansible the username and ssh key and you can start using it.
+
+Depending on your system, installing Ansible may differ slightly.  On Ubuntu the easiest way is to use apt-get:
+
+```
+apt-get install ansible.
+```
+
+After that, just as a personal preference, I like to edit /etc/ansible/ansible.cfg and point my hosts file to a different working directory (*in the rest of this article we'll assume you're working out of /home/ubuntu/ansible*):
+
+```
+hostfile       = /home/ubuntu/ansible/hosts
+```
+
+Next, we're going to create our directory structure. Here is what ours is going to look like (this is available on github [here](https://github.com/jonathonklem/ansible_testing)):
+
+![Ansible Directory Structure](/assets/images/ansible-directory-structure.png)
+
+These files are listed alphabetically, and there's a README.md listed that is not part of Ansible, but is included because this was a git repository.  The first file that we're going to discuss is the 'hosts' file.  This is the file that we use to define our hosts and our groups.  Currently the contents look like this:
+
+```python 
+[mygroup]
+ubuntuslave
+```
+
+The first line defines a group, that we call 'mygroup'. Anything listed below this will be a member of 'mygroup'. In our example we just have one, called 'ubuntuslave'.
+
+Now we have to define what 'ubuntuslave' is.  We define all of our hosts in the 'hosts_vars' directory.  Each host gets its own file.  In our example there is only one host, but you can define as many as you need.  This is the format of the file:
+
+```python
+ansible_ssh_host: 172.31.31.146
+ansible_ssh_private_key_file: /home/ubuntu/ansible/keys/ansible-testing.pem
+ansible_ssh_port: 22
+ansible_ssh_user: ubuntu
+```
+
+All of the Ansible configuration files are in YML format. In testing, I've found that Ansible will not give you any errors if you don't start the file with three dashes, but it's customary to start YML files this way and should be done as a best practice.  Variables are set in the "**variable_name: value**" format. The variables we're setting are the standard variables that will allow ansible to connect to the host. We have to let them know the address, key file, port, and username (technically, key is not a requirement, but it's recommended).
+
+You can define group variables as well as host variables.  These are variables that will be accessible across all hosts in a particular group.  This is useful for defining things like config file locations.  Ours looks like this:
+
+```
+---
+file: /home/ubuntu/myfile.txt
+```
+
+Now the file variable will be defined for all of the hosts in this group.  These variables can be accessed with the following format **{{ variable_name }}**
+
+Next we're going to define some roles.  All roles will be directories inside of our 'roles' directory.  They can be named whatever you'd like.  In our example we're naming our single role 'ubuntuslaverole'.
+
+There are 4 main subdirectories that you can place in your role directory.  Those are **files**, **tasks**, **templates**, and **handlers**.  For this example, we're only going to use the files and tasks directories.  As you could probably imagine, files will hold files that we'll copy to the hosts and tasks will define tasks that we'll run on the hosts.
+
+There isn't much need to discuss the files directory.  You can place any files in here that you'd like.  They won't automatically be copied over because that needs to be done in your tasks file.  Inside our tasks directory we have one file--main.yml.
+
+Our main.yml file looks like this:
+
+```
+---
+- name: copy files
+  copy: src=test.txt dest=~/
+- name: update ubuntu
+  command: apt-get update -yq
+  sudo: yes
+- name: upgrade ubuntu
+  command: apt-get upgrade -qq
+  sudo: yes
+- name: touch file
+  command: touch {{ file }}
+```
+
+The format for our tasks YML file works like this:
+
+```
+- name: task name
+   module: argument
+   sudo: yes
+```
+
+Bold items are defined by you in the script, the 'module' will be whatever ansible module you're going to use. There are several available, in our example we're just using 'copy' and 'command'. Whether or not you want to run the module as sudo is optional. If you don't need sudo access you can omit that line.
+
+As we go from top to bottom, first we copy our test.txt file from our local 'files' directory to the home destination of whoever we're logged in as on the remote system.  We defined our user in the host variables file, and for this example it will be 'ubuntu'.  The next three items run a command.  The first two are simple apt-get commands.  The last one uses a variable we defined in group_vars/mygroup.
+
+Now that we have hosts, host variables, group variables, and roles defined, we're going to create a playbook.  This is our 'sites.yml' file:
+
+```
+---
+- hosts: ubuntuslave
+  roles:
+    - ubuntuslaverole
+```
+
+Here we define what hosts we want to use. We're referencing the specific host, but we could also reference the group name if we were wanting to run this on multiple hosts at once. One thing to note, is that whether or not you reference the group or the specific host, the group variables will still be accessible as long as the host is a member of that group as defined in your 'hosts' file.
+
+After we tell Ansible what hosts we want to use, we define the roles that we're going to use against those hosts.  In this case we're only running the one role, 'ubuntuslaverole'.
+
+After that, the last thing we have to do is run the playbook.  You can do this with the following command:
+
+```
+ansible-playbook sites.yml
+```
+
+Make sure that you're running that in the directory where sites.yml is located.   Another great aspect of Ansible is that it's idempotent.  With certain modules like appending and copying files over, Ansible will keep track of whether or not that module ran successfully on the remote host.  If something doesn't work right when you run a place, you can stop the playbook, fix the error, run the playbook again, and Ansible will skip all the modules that ran successfully.  After running the above command you should see output that looks like this:
+
+```
+PLAY [ubuntuslave] ************************************************************
+GATHERING FACTS ***************************************************************
+ok: [ubuntuslave]
+TASK: [ubuntuslaverole | copy files] ******************************************
+changed: [ubuntuslave]
+TASK: [ubuntuslaverole | update ubuntu] ***************************************
+changed: [ubuntuslave]
+TASK: [ubuntuslaverole | upgrade ubuntu] **************************************
+changed: [ubuntuslave]
+TASK: [ubuntuslaverole | touch file] ******************************************
+changed: [ubuntuslave]
+PLAY RECAP ********************************************************************
+ubuntuslave : ok=5 changed=4 unreachable=0 failed=0
+```
+
+The last line lets you know that all of our tasks executed successfully, and 4 of them involved changes to the host. If you run the command again, you'll see something a little different:
+
+```
+GATHERING FACTS ***************************************************************
+ ok: [ubuntuslave]
+TASK: [ubuntuslaverole | copy files] ******************************************
+ ok: [ubuntuslave]
+TASK: [ubuntuslaverole | update ubuntu] ***************************************
+ changed: [ubuntuslave]
+TASK: [ubuntuslaverole | upgrade ubuntu] **************************************
+ changed: [ubuntuslave]
+TASK: [ubuntuslaverole | touch file] ******************************************
+ changed: [ubuntuslave]
+PLAY RECAP ********************************************************************
+ ubuntuslave : ok=5 changed=3 unreachable=0 failed=0
+```
+
+Here it says that only 3 have changed. That's because our copy file command is idempotent and Ansible sees that the file already exists and doesn't need to be copied over.
+
+This should be enough information to get you started working with Ansible. If you have any questions or comments email me at [jonathonklem@gmail.com](mailto:jonathonklem@gmail.com).
