@@ -9,6 +9,7 @@ status: publish
 type: post
 published: true
 ---
+
 Recently I started working on a fairly complicated, high-volume Magento website.  This website had a development and a production server and the client was juggling several different modifications at once in an effort to boost their sales and improve the customer experience.  The problem was, that there was only one development server and they would often like to go back and forth between edits to test functionality out and the experience would come out to something like: 
 
 > "Let us see what edits #1, #2, #3, #4, and #5 look like.....  Ok, let's push #2,#4, and #5 to production."  With the nature of how Magento is structured, often the various edits would have a handful of affected files in common.
