@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Useless Arduino Hacking
-date: 2014-11-03 02:49:52.000000000 -06:00
+date: 2014-11-03 02:49:52.000000000 -06:05
 categories:
 - Circuits
 - Programming

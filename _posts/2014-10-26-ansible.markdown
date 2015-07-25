@@ -9,6 +9,7 @@ status: publish
 type: post
 published: true
 ---
+
 Ansible is a tool designed to automate tasks on several machines at once and define their role within a network.  It is well documented [here](http://docs.ansible.com/) and there is even a video [here](http://fast.wistia.net/embed/iframe/qrqfj371b6?popover=true).  There is already a wealth of information about Ansible out there, so this guide will just aim to get you started quickly.
 
 Ansible is incredibly easy to use and easy to implement. The great thing about Ansible is that it uses SSH, so you don't have to install any kind of software on the servers you're wanting to modify.  All you have to do is give Ansible the username and ssh key and you can start using it.
@@ -16,7 +17,7 @@ Ansible is incredibly easy to use and easy to implement. The great thing about A
 Depending on your system, installing Ansible may differ slightly.  On Ubuntu the easiest way is to use apt-get:
 
 ```
-apt-get install ansible.
+apt-get install ansible
 ```
 
 After that, just as a personal preference, I like to edit /etc/ansible/ansible.cfg and point my hosts file to a different working directory (*in the rest of this article we'll assume you're working out of /home/ubuntu/ansible*):
