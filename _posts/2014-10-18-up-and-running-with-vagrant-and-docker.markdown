@@ -10,6 +10,8 @@ type: post
 published: true
 ---
 
+[Check out my later blog post for more accurate and up-to-date information on docker](/devops/docker-update/)
+
 It's not uncommon for a new developer to join a project and be required to set up a local dev environment.  Depending on the company, there may be little instructions about how they want him to do this.  More often than not the most straight-forward way to get this dev environment up and running is to install an XAMP server, then download the latest files from production and copy over the database information.  After all the information is in place, this will usually require a couple hours of seeing a broken website and going back and forth checking error messages and installing required modules.
 
 Other than the wasted time of setting up this dev environment, the problem with this scenario is that it's error prone and even if the dev gets the site running there's no assurance that he's using the same version of the modules that are being ran on the live site which can cause problems down the road.  There's also the issue of copying over the database information.  If it's a production server that has ecommerce, there's a chance that the dev may end up copying live user information to an insecure location.
