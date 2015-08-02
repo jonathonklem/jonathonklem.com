@@ -8,6 +8,7 @@
         background-position: center -32px;
         background-attachment: fixed;
 
+
         @include media-query($on-palm) {
             min-height: 250px;
             background-position: center;
