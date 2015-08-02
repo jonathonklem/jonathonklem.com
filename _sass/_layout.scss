@@ -5,7 +5,7 @@
         background-color: $brand-color;
         background-image: url('/assets/background.jpg');
         background-size: cover;
-        background-position: center -170px;
+        background-position: center -32px;
         background-attachment: fixed;
 
         @include media-query($on-palm) {
