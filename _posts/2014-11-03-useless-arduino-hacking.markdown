@@ -17,9 +17,9 @@ In this project I used an Arduino Uno Rev3 board, an Arduino Compatible Ethernet
 
 You can find all of the necessary code on github [here](https://github.com/jonathonklem/temperature_monitoring.git).  We'll start with the hardware set up.  This is pretty much the same thing as Circuit 7 on the Vilros Ultimate Starter Kit Guide, circuit #7.  The difference is that I'm using the Ethernet shield and I'm using a different analog pin because pin 0 is used by the shield.
 
-![setup](/assets/images/setup-1024x841.jpg)
+![setup](https://jonathonklem.com/assets/images/setup-1024x841.jpg)
 
-![schematic](/assets/images/schematic.jpg)
+![schematic](https://jonathonklem.com/assets/images/schematic.jpg)
 
 The above pictures should be self-explanatory.   We hook the transistor up to our +5v and ground.  Because of the doping and several tiny elves working on even tinier computers, the transistor will allow different voltages out to analog 3 depending on the temperature.
 
@@ -83,7 +83,7 @@ This uses TwiML which is an XML format that Twilio can interpret. It's very easy
 
 The next step is to point your Twilio number to your script.  You can do this by selecting 'numbers' in the menu, clicking on the number you want to edit, and changing the voice 'Request URL' here:
 
-![Twilio Screen](/assets/images/twilio-screen.png)
+![Twilio Screen](https://jonathonklem.com/assets/images/twilio-screen.png)
 
 After that, all that's left to do is to hook the Arduino up to your router and power it on.  You can check the output in the serial monitor and see when it makes the get requests.  Hopefully this can server as an example for rigging up near-useful systems with your Arduino.  I look forward to doing more projects and documenting them here.   If you have any questions or comments email me at [jonathonklem@gmail.com](mailto:jonathonklem@gmail.com).
 <p>&nbsp;</p>

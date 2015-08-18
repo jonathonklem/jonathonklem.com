@@ -30,11 +30,11 @@ The great thing about branches is that you can mix and match features.  Before,
 
 The first step needed to make this happen is to create your repository on GitHub.  GitHub offers free public repositories, and for a fee you can make repositories private.  Private repositories are recommended, especially if you're dealing with proprietary or sensitive data.  You can create a new repository by clicking the plus next to your username.
 
-!["New Repo"](/assets/images/new-repository-300x122.png)
+!["New Repo"](https://jonathonklem.com/assets/images/new-repository-300x122.png)
 
 After that, you'll be presented with a screen asking you for information about your repository.  I recommend initializing your repository with a README file.  As the page says, this will allow you to checkout the repository immediately (we'll cover how to do that next).
 
-!["New Form"](/assets/images/new-form.png)
+!["New Form"](https://jonathonklem.com/assets/images/new-form.png)
 
 Next, you'll be directed to your newly created repository.  Here you'll find a link to your 'clone url'.  You'll want to copy this and go to your git shell and enter the following:
 
@@ -90,15 +90,15 @@ You could continue this pattern and stack on as many feature changes as you'd li
 
 Let's say that the client approves these changes and they like what they see.  Our next step is to do a 'pull request'.
 
-!["GitHub Pull Request"](/assets/images/pullRequest.png)
+!["GitHub Pull Request"](https://jonathonklem.com/assets/images/pullRequest.png)
 
 If we click "Compare and Pull Request", we're presented with a screen that lets us add a comment to this pull request:
 
-!["GitHub Pull Request Comment"](/assets/images/pullReqestComment.png)
+!["GitHub Pull Request Comment"](https://jonathonklem.com/assets/images/pullReqestComment.png)
 
 After entering some comment about our pull request.  We can finally approve this.  This is also a good opportunity to set up some sort of controls, and allow another developer to review your changes before the pull request is approved.  In this example we're going to approve our own pull request:
 
-!["Merge Pull Request"](/assets/images/mergePullRequest.png)
+!["Merge Pull Request"](https://jonathonklem.com/assets/images/mergePullRequest.png)
 
 After we select 'merge pull request', master has our new code in it.  If we want to put these changes on production, we can use a simple 'pull':
 
@@ -106,11 +106,11 @@ After we select 'merge pull request', master has our new code in it.  If we wan
 
 The changes are now synced on production.  It's at this stage that I like to 'tag' the release, so that we can revert back to it in the future if we need to.  You can find the panel necessary to do this on the main page of your repository.
 
-!["GitHub tag branch"](/assets/images/tagButton.png)
+!["GitHub tag branch"](https://jonathonklem.com/assets/images/tagButton.png)
 
 Next you'll be presented with the option to create a new repository, and from there you will see a form where you can enter the relevant information:
 
-!["Git Hub Publish Release"](/assets/images/publishRelease.png)
+!["Git Hub Publish Release"](https://jonathonklem.com/assets/images/publishRelease.png)
 
 Now, should something happen in the future and some bad commits hit master, we can always revert back to this state.
 

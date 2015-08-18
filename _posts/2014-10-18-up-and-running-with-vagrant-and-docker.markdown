@@ -30,7 +30,7 @@ vagrant up
 
 <p>The `vagrant up` command will take a while to run. It has to download several image files and clone a couple repositories. Once it's completed though, you will be able to open up a browser and navigate to http://10.10.10.10 and you should see this:</p>
 
-!["vagrant-server-screenshot"](/assets/images/vagrant-server-screenshot.png)
+!["vagrant-server-screenshot"](https://jonathonklem.com/assets/images/vagrant-server-screenshot.png)
 
 Now that we see what the finished product looks like, let's check out why it works.  *Note: While there is no set-in-stone way you must use docker, it should be noted that we're using it in a less 'correct' way in this article.  Technically with how I'm using Docker it would have made just as much sense to just set up Apache in the Vagrant machine, however, I want to introduce docker and some basics about it because in a future article I will describe the 'correct' process of setting up volumes and having multiple docker containers communicate with each other.*
 
@@ -68,16 +68,6 @@ The next step is to provision the system.  The steps we'll take to provision t
 + Install packages we need (docker and git)
 + Build our docker container
 + Run the Apache docker container in daemon mode
-
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- JonKlem Docker Ad -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:728px;height:90px"
-     data-ad-client="ca-pub-6493519324100090"
-     data-ad-slot="1392066444"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 
 Here is our provisioning script:
 
