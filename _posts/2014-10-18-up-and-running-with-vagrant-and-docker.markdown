@@ -67,16 +67,6 @@ The next step is to provision the system.  The steps we'll take to provision t
 + Build our docker container
 + Run the Apache docker container in daemon mode
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- JonKlem Docker Ad -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:728px;height:90px"
-     data-ad-client="ca-pub-6493519324100090"
-     data-ad-slot="1392066444"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
 Here is our provisioning script:
 
 ```
