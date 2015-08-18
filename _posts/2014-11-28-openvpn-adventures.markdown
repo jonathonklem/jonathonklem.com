@@ -15,33 +15,33 @@ I recently had the pleasure of configuring a VPN between a data center in Virgin
 
 First, we have to create our VPC.  Inside the AWS management console, navigate to Services-&gt;VPC and inside the VPC dashboard select "Your VPCs".  Next we'll click "Create VPC": 
 
-![Create VPC](/assets/images/create-vpc-e1417043038127.png)
+![Create VPC](https://jonathonklem.com/assets/images/create-vpc-e1417043038127.png)
 
 The first option, "Name tag" is just used as a reference and can be anything you want.  The CIDR block will define our network.  In the example that they give: 10.0.0.0/16, this will create a network with valid IP addresses ranging from 10.0.0.1 - 10.0.255.255 (a 16 bit subnet, or a network mask of 255.255.0.0).  For this example we're going to go with '10.8.0.0/16' as our CIDR block.
 
 Next, we're going to have to add a gateway to our VPC so our packets can reach the outside world.  We do this by selecting "Internet Gateways" in the left panel of the VPC Management Console and selecting "Create Internet Gateway".  Here, we're only presented with one option, and that's the name of our VPC:
 
-![Create Gateway](/assets/images/create-gateway-e1417043077318.png)
+![Create Gateway](https://jonathonklem.com/assets/images/create-gateway-e1417043077318.png)
 
 In this example we'll call our Gateway "Test VPN Gateway".  After it's created we'll have to attach it to our VPC.  To do this, we'll right click on the gateway and select "Attach To VPC".  In this next screen there's a drop down with a list of our active VPCs:
 
-![Attach To VPC](/assets/images/attach-to-vpc-e1417042970382.png)
+![Attach To VPC](https://jonathonklem.com/assets/images/attach-to-vpc-e1417042970382.png)
 
 Lastly we'll create a subnet within our VPC.  We have a 16 bit network that we could divide up however we see fit, for this example though we'll make the subnet be the entire network, so 10.8.0.0/16.  We'll name it "TestVPN Subnet".
 
-![Create Subnet](/assets/images/create-subnet-e1417042889555.png)
+![Create Subnet](https://jonathonklem.com/assets/images/create-subnet-e1417042889555.png)
 
 Now we must associate our route with our subnet.  When you created the VPC a route was automatically created for you, but when you created your subnet it wasn't automatically associated with the route table.  In the VPC dashboard click "Route Tables", select the "Subnet Association" tab, click "edit" and then make sure your subnet is checked:
 
-![Attach your route table](/assets/images/route-table.png)
+![Attach your route table](https://jonathonklem.com/assets/images/route-table.png)
 
 Next we need to make sure that we're routing to our gateway.  Make sure that "0.0.0.0/0" is being routed to our internet gateway.  This can be modified in the 'Routes' tab:
 
-![Create Gateway Route](/assets/images/create-gateway-route.png)
+![Create Gateway Route](https://jonathonklem.com/assets/images/create-gateway-route.png)
 
 Now we have our VPC all set up.  Next we'll create two EC2 instances inside of our VPC.  From the EC2 dashboard, select "Launch Instance" and go through the setup just like any other instance.  You can select whichever instance type you like, I'm going with micro for this article.  The main part to pay attention to is when you get to stage 3.  You want to make sure that you've selected the proper VPC and Subnet.  Also for the line that says "Auto-assign Public IP", be sure to set this to 'Enabled' for the VPN server instance and 'Disabled' for the other server:
 
-![EC2 Setup](/assets/images/ec2-setup.png)
+![EC2 Setup](https://jonathonklem.com/assets/images/ec2-setup.png)
 
 **Of the utmost importance is to disable source/destination checking on the VPN Server and enable IPv4 Forwarding.**  To enable IPv4 Forwarding edit /etc/sysctl.conf and uncomment the line that says "net.ipv4.ip_forward=1" and issue the following command:
 
@@ -51,7 +51,7 @@ Now we have our VPC all set up.  Next we'll create two EC2 instances inside of 
 
 To disable source/destination checking right click the EC2 instance, select "Change Source/Dest. Checking" and make sure to disable.  This will allow the VPN server to actually route the packets, and will let you avoid any hairpin NATing issues.
 
-![Disable Source and Destination Checking](/assets/images/disable-source-dest-check-e1417042744126.png)
+![Disable Source and Destination Checking](https://jonathonklem.com/assets/images/disable-source-dest-check-e1417042744126.png)
 
 ## Setting Up The OpenVPN Server
 
@@ -134,11 +134,11 @@ Next we'll start the server:
 
 When you run `ifconfig` you should see there is a new tun0 interface.  If you do not see this new interface, run `cat /var/log/syslog | grep vpn` to see any error messages OpenVPN may have spat out.  Most likely it won't start because a certificate file name was misspelled or not copied to the proper location.  You'll want to make sure that UDP port 1194 is accessible.  So go back to the ec2 dashboard and edit the VPN server's security group to open that port:
 
-![Allow UDP Port 1194](/assets/images/udp-rule.png)
+![Allow UDP Port 1194](https://jonathonklem.com/assets/images/udp-rule.png)
 
 You can create whatever size subnet you like for your VPN configuration.  I chose to go with a 16 bit subnet for this article.  The most important part is that you do not want the networks to overlap, so our VPC is 10.8.0.0/16 and our VPN is 10.9.0.0/16.  Next we'll want to edit our routing table, and make sure that all packets headed to our VPN network go through our VPN server.  To do that we'll go back to our VPC dashboard and edit the route table just like when we added the default route to the gateway like so (i-6abfd58b is the instance ID of our VPN server):
 
-![Add Your VPN Route](/assets/images/add-vpn-route.png)
+![Add Your VPN Route](https://jonathonklem.com/assets/images/add-vpn-route.png)
 
 While we're in AWS, we want to make sure to enable ICMP traffic to our other host in our VPC (the one that's not the VPN server) to test that our connection works, do this the same way we enabled UDP port 1194 for the VPN server.
 

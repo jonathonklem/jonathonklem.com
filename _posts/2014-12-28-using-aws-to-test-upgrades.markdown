@@ -20,15 +20,15 @@ If you haven't done so already, put an elastic IP address on your ec2 instances.
 
 You can access this panel from the ec2 dashboard on the left side under the "network and security" tab.  The interface couldn't be simpler.  Simply click "Allocate New Address" and then after it's created click "Associate Address" to connect it to your running ec2 instance.  **This will cause you to lose your old public IP address and will result in downtime until you update your DNS record, so do this with great caution.**  I recommend using an using elastic IP addresses for all servers as soon as you create them so as to avoid downtime in the future.
 
-![Elastic IP](/assets/images/elastic-ip.png)
+![Elastic IP](https://jonathonklem.com/assets/images/elastic-ip.png)
 
 This allows you to take a snapshot of a running server.  Once the snapshot is created, you can launch a clone of this AMI and have a 1:1 match of your production server.  To create an AMI, right click on your running ec2 instance, navigate to "Image" and then "Create Image".
 
-![Create AMI](/assets/images/create-ami.png)
+![Create AMI](https://jonathonklem.com/assets/images/create-ami.png)
 
 This process will take some time.  You can check its progress under "Images" -&gt; "AMIs" in the left hand pane.  Once the AMI is ready to launch, the status will say "available".  Now we can create a clone of our production server by right clicking and selecting "Launch".
 
-![Launch AMI](/assets/images/launch-ami.png)
+![Launch AMI](https://jonathonklem.com/assets/images/launch-ami.png)
 
 You'll be presented with the same options as when you create a normal ec2 instance.  This is the only process that's not automated and you'll want to take extra care to match your original server's instance type and any other special settings that you may have altered.
 
@@ -38,6 +38,6 @@ Once you've spun up the clone, you can access it however you would the productio
 
 Once the changes have been done and you're satisfied that nothing broke, all that's left is to switch the IP address over.  To do this, you go to the same EIP panel that we used to create our elastic IP address.  You click the IP address you want to re-associate, and click the "Associate Address" button.
 
-![Re-associate Address](/assets/images/reassociate-address.png)
+![Re-associate Address](https://jonathonklem.com/assets/images/reassociate-address.png)
 
 Once the IP address has been re-associated and you've confirmed that everything is running fine, you can shut down and terminate the old instance.  If you have any questions or comments you can email me at [jonathonklem@gmail.com](mailto:jonathonklem@gmail.com).

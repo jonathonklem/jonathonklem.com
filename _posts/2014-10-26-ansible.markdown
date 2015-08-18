@@ -28,7 +28,7 @@ hostfile       = /home/ubuntu/ansible/hosts
 
 Next, we're going to create our directory structure. Here is what ours is going to look like (this is available on github [here](https://github.com/jonathonklem/ansible_testing)):
 
-![Ansible Directory Structure](/assets/images/ansible-directory-structure.png)
+![Ansible Directory Structure](https://jonathonklem.com/assets/images/ansible-directory-structure.png)
 
 These files are listed alphabetically, and there's a README.md listed that is not part of Ansible, but is included because this was a git repository.  The first file that we're going to discuss is the 'hosts' file.  This is the file that we use to define our hosts and our groups.  Currently the contents look like this:
 

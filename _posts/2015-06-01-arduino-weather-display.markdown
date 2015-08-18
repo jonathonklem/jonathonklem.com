@@ -17,9 +17,9 @@ Unlike with [the Twilio project](http://www.jonathonklem.com/blog/useless-arduin
 
 Here is what our circuit looks like:
 
-![Schematic](/assets/images/schematic.jpg)
+![Schematic](https://jonathonklem.com/assets/images/schematic.jpg)
 
-![Breadboard](/assets/images/breadboard.jpg)
+![Breadboard](https://jonathonklem.com/assets/images/breadboard.jpg)
 
 The ethernet shield that I'm using uses the [SPI bus](http://www.arduino.cc/en/Reference/SPI) which consists of pins 10-13.  Even though they're physically available they are being used by the ethernet shield.  It should also be noted that I'm using a 4 line LCD display.  The 4 line LCD has the same pin layout as the 2 line LCD and uses the same functions from the LCD library.
 
@@ -38,6 +38,6 @@ Again, all of the code can be found  [in this github repo](https://github.com/
 
 Here is what the finished hardware looks like:
 
-![Arduino Lights on](/assets/images/arduino-lights-on.jpg)
+![Arduino Lights on](https://jonathonklem.com/assets/images/arduino-lights-on.jpg)
 
-![Arduino Lights Off](/assets/images/arduino-lights-off.jpg)
+![Arduino Lights Off](https://jonathonklem.com/assets/images/arduino-lights-off.jpg)
