@@ -42,7 +42,7 @@ This command uses '-e' to set the environment variable so the container knows ho
 
 If you navigate to localhost:8080 you should see the WordPress install page.  We now have a functioning containerized WordPress site!  
 
-If you make changes to the database, those changes will be lost unless you do a `docker commit master-mysql` to save the state of the database.  The volume-only container will not use a layered file system, so you don't have to commit changes made to it.  With Docker volumes, the volume only perists so long as there is a running container using it.  You can use `docker export` and `docker import` to backup and restore your docker volume:
+If you make changes to the database, those changes will be lost unless you do a `docker commit master-mysql` to save the state of the database.  The volume-only container will not use a layered file system, so you don't have to commit changes made to it.  With Docker volumes, the volume only persists so long as there is a running container using it.  You can use `docker export` and `docker import` to backup and restore your docker volume:
 
 ```
 docker export --output="volume.tar" web-data

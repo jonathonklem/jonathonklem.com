@@ -52,7 +52,7 @@ You can create git hooks by adding them in '.git/hooks/'.  There are specific na
 ```
 #!/bin/sh
 
-# --destination is optional, if it's ommitted, the default _site folder will be used
+# --destination is optional, if it's omitted, the default _site folder will be used
 jekyll build --source /path/to/your/jekyllsite/ --destination /path/to/your/output/site/
 
 #  if you're hosting your site on an s3 bucket you'd use the following:
