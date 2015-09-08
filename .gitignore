@@ -1,5 +1,7 @@
 /_site
-.*
+.travis.yml
+*.swp
+.sass-cache
 !/.gitignore
 _attachments
 assets
