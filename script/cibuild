@@ -7,4 +7,4 @@ bundle exec htmlproof ./_site --href-ignore \#,http:\/\/10.10.10.10
  
 # check spelling
 cp .aspell.en.pws ~/
-find . -iname "*.markdown" -exec cat {} \; | aspell list -d en --encoding utf-8 | sort | uniq 
+find . -iname "*.markdown" -exec cat {} \; | aspell list -d en --encoding utf-8 | sort | uniq | exit $(wc -l)
