@@ -5,13 +5,12 @@
         background-color: $brand-color;
         background-image: url('/assets/background.jpg');
         background-size: cover;
-        background-position: center -32px;
+        background-position: center bottom;
         background-attachment: fixed;
 
 
         @include media-query($on-palm) {
             min-height: 250px;
-            background-position: center;
         }
     }
 
