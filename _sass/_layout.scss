@@ -1,11 +1,11 @@
 /* Site Header
  * ============================================== */
     .site-header {
-        min-height: 333px;
+        min-height: 420px;
         background-color: $brand-color;
         background-image: url('/assets/background.jpg');
         background-size: cover;
-        background-position: center bottom;
+        background-position: center;
         background-attachment: fixed;
 
 
@@ -13,6 +13,10 @@
             min-height: 250px;
         }
     }
+
+		article a {
+			text-decoration: underline;
+		}
 
     .site-header a, a h1:hover {color: #FFF};
 
