@@ -16,7 +16,7 @@ First we'll start off with PHPUnit.  Their quickstart guide (located [here](http
 
 In our src directory, we'll have our autoload.php file, which will be used to find class definitions ([refer to the php.net documentation for more info](http://php.net/manual/en/language.oop5.autoload.php)):
 
-```
+{% highlight php %}
 <?php
 	spl_autoload_register(
 		function($class) {
@@ -25,11 +25,11 @@ In our src directory, we'll have our autoload.php file, which will be used to fi
 			}
 		}
 	);
-```
+{% endhighlight %}
 
 Nothing too exciting here.  Next we'll move on to our Quadrilateral class (Quadrilateral.php):
 
-```
+{% highlight php %}
 <?php
 class Quadrilateral {
 	private $_width, $_height;
@@ -54,11 +54,11 @@ class Quadrilateral {
 	}
 }
 
-```
+{% endhighlight %}
 
 You'll notice there is an issue with our setWidth() method.  We're adding 2 to the entered width for no apparent reason.  This is to help demonstrate how PHPUnit can be used to find bugs.  Let's look at our QuadrilateralTest.php file in the test directory:
 
-```
+{% highlight php %}
 <?php
 class QuadrilateralTest extends PHPUnit_Framework_TestCase
 {
@@ -90,13 +90,13 @@ class QuadrilateralTest extends PHPUnit_Framework_TestCase
 		}
 }
 ?>
-```
+{% endhighlight %}
 
 In this file we've defined 3 tests with the 3 functions.  In all three of these tests we're making assertions.  In the first we create an instance of Quadrilateral and pass it a width and a height.  We then make sure that the height is what we expect (3*2 should = 6).  In the second test we're creating an instance with the default width and height and then setting the height.  In the third test we're setting the width.  In both the second and the third test, we make an assertion about the area.
 
 Next we'll want to add our phpunit.xml file.  When travis runs a test it defaults to 'phpunit' (if you're testing a php application).  Since there are no arguments, phpunit will look for the xml file.  This can also be demonstrated in your shell by running `phpunit` in the directory:
 
-```
+{% highlight xml %}
 <phpunit bootstrap="src/autoload.php">
   <testsuites>
     <testsuite name="muhtests">
@@ -104,7 +104,7 @@ Next we'll want to add our phpunit.xml file.  When travis runs a test it default
     </testsuite>
   </testsuites>
 </phpunit>
-```
+{% endhighlight %}
 
 The structure is pretty self explanatory.  We make sure to define our test suite and let PHPUnit know where the tests are located and we also tell it where our autoload file is located.  Next if we navigate to our directory and type `phpunit` it PHPUnit will run through our tests:
 
