@@ -33,7 +33,7 @@ abbadon:minimal-block jklem$ ls
 
 The [Jekyll site](http://jekyllrb.com/docs/structure/) has excellent documentation about the directory structure, so I won't go into detail but it's incredibly easy to get going.  All blog posts are added in `_posts` as markdown files.  If you want to create additional pages, you create a directory and add an index.html file to that directory (in the minimalist-block example they have a 'contact' and 'about' page).
 
-After you've made any changed and added any content you want, you can test things out with the following:
+After you've made any changes and added any content you want, you can test things out with the following:
 
 ```
 abbadon:minimal-block jklem$ jekyll serve
