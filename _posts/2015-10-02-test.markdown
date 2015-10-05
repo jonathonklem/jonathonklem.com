@@ -1,13 +1,18 @@
 ---
 layout: post
-title: This is a test post
+title: Ohio Linux Fest 2015
 date: 2015-10-02 03:13:44.000000000 -05:00
 categories:
-- Test
+- Info
 tags: []
 status: publish
 type: post
 published: true
 ---
 
-This is a test of making a post
+This weekend I attended Ohio Linux Fest.  This was my second year attending, but my first year presenting.  It was awesome.  A lot of fun was had.  Here are some pictures.
+
+![Hacking Away In The Hotel](/assets/img/hotel-room.jpg "Hacking Away In The Hotel")
+![Group Picture](/assets/img/group.jpg "Group Picture")
+![Close Up During Talk](/assets/img/close-up-me.jpg "Close Up During Talk")
+![Including Crowd](/assets/img/me-distance.jpg "Including Crowd")
