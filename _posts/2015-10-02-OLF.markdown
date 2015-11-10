@@ -13,6 +13,14 @@ published: true
 This weekend I attended Ohio Linux Fest.  This was my second year attending, but my first year presenting.  It was awesome.  A lot of fun was had.  Here are some pictures.
 
 ![Hacking Away In The Hotel](/assets/images/hotel-room.jpg "Hacking Away In The Hotel")
+
+
 ![Group Picture](/assets/images/group.jpg "Group Picture")
+
+
 ![Close Up During Talk](/assets/images/close-up-me.jpg "Close Up During Talk")
+
+
 ![Including Crowd](/assets/images/me-distance.jpg "Including Crowd")
+
+
